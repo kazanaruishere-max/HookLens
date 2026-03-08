@@ -7,6 +7,18 @@
     <a href="#-english-documentation">🇬🇧 English</a> •
     <a href="#-dokumentasi-bahasa-indonesia">🇮🇩 Bahasa Indonesia</a>
   </p>
+
+  <h3>💻 Tech Stack</h3>
+  <p>
+    <img src="https://img.shields.io/badge/Next.js%2015-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" />
+    <img src="https://img.shields.io/badge/Hono.js-E36002?style=for-the-badge&logo=hono&logoColor=white" alt="Hono.js" />
+    <img src="https://img.shields.io/badge/Cloudflare_Workers-F38020?style=for-the-badge&logo=cloudflare&logoColor=white" alt="Cloudflare Workers" />
+    <img src="https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=socket.io&logoColor=white" alt="Socket.io" />
+    <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase" />
+    <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" alt="Redis" />
+    <img src="https://img.shields.io/badge/Claude_3.5_AI-D97757?style=for-the-badge&logo=anthropic&logoColor=white" alt="Claude AI" />
+    <img src="https://img.shields.io/badge/Tailwind_CSS_v4-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+  </p>
 </div>
 
 ---
