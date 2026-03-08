@@ -8,8 +8,8 @@ import { Server as SocketIOServer } from 'socket.io';
 import Redis from 'ioredis';
 import { jwtVerify } from 'jose';
 
-const PORT = parseInt(process.env.WS_PORT || '3001');
-const REDIS_URL = process.env.WS_REDIS_URL || 'redis://localhost:6379';
+const PORT = parseInt(process.env.PORT || process.env.WS_PORT || '3001');
+const REDIS_URL = process.env.WS_REDIS_URL || process.env.REDIS_URL || 'redis://127.0.0.1:6379';
 const JWT_SECRET = process.env.WS_JWT_SECRET || 'dev-secret-change-in-production';
 const FRONTEND_URL = process.env.WS_FRONTEND_URL || 'http://localhost:3000';
 
@@ -35,8 +35,14 @@ const io = new SocketIOServer(httpServer, {
   pingInterval: 25000,
 });
 
-// Redis clients
-const subscriber = new Redis(REDIS_URL);
+// Redis clients (with retry strategy so it doesn't crash Node instantly on deployment if Redis isn't up yet)
+const subscriber = new Redis(REDIS_URL, {
+  maxRetriesPerRequest: 50,
+  retryStrategy(times) {
+    console.warn(`[Redis] Retrying connection (Attempt ${times})...`);
+    return Math.min(times * 1000, 5000); // Reconnect after 1s, max 5s
+  }
+});
 
 // Track stats
 let totalMessagesForwarded = 0;
@@ -96,10 +102,11 @@ io.on('connection', (socket) => {
 // ==========================================
 subscriber.subscribe('webhooks:new', 'webhooks:analyzed', (err) => {
   if (err) {
-    console.error('[Redis] Failed to subscribe:', err);
-    process.exit(1);
+    console.error('[Redis] Failed to subscribe to channels:', err.message);
+    // Don't exit process, let retryStrategy handle reconnection
+  } else {
+    console.log('[Redis] Subscribed to channels: webhooks:new, webhooks:analyzed');
   }
-  console.log('[Redis] Subscribed to channels: webhooks:new, webhooks:analyzed');
 });
 
 subscriber.on('message', (channel, message) => {
