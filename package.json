@@ -1,0 +1,19 @@
+{
+  "name": "hooklens",
+  "version": "1.0.0",
+  "private": true,
+  "description": "HookLens - Visual Webhook Debugger",
+  "scripts": {
+    "dev": "concurrently \"pnpm --filter frontend dev\" \"pnpm --filter backend dev\" \"pnpm --filter websocket-server dev\"",
+    "dev:frontend": "pnpm --filter frontend dev",
+    "dev:backend": "pnpm --filter backend dev",
+    "dev:ws": "pnpm --filter websocket-server dev",
+    "build": "pnpm --filter frontend build",
+    "lint": "pnpm --filter frontend lint",
+    "test": "pnpm --filter backend test",
+    "type-check": "pnpm -r type-check"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
