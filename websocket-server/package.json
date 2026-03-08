@@ -10,11 +10,11 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "socket.io": "^4.8.0",
-    "ioredis": "^5.4.0",
-    "jose": "^5.9.0",
-    "tsx": "^4.19.0",
-    "typescript": "^5.7.0"
+    "socket.io": "4.8.0",
+    "ioredis": "5.4.0",
+    "jose": "5.9.0",
+    "tsx": "4.19.0",
+    "typescript": "5.7.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.0"
