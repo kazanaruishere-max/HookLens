@@ -87,34 +87,61 @@ export async function analyzeWebhook(
     .replace('{{payload}}', JSON.stringify(webhook.payload, null, 2).substring(0, 2000))
     .replace('{{error}}', webhook.responseBody || 'None');
 
-  const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-      'HTTP-Referer': 'https://hooklens.dev',
-      'X-Title': 'HookLens',
-    },
-    body: JSON.stringify({
-      model: 'anthropic/claude-3.5-sonnet',
-      max_tokens: 1500,
-      messages: [{ role: 'user', content: prompt }],
-    }),
-  });
+  const isGeminiKey = apiKey.startsWith('AIza');
+  let content = '';
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    console.error('OpenRouter API error:', errorText);
-    return getDefaultAnalysis('AI analysis failed: ' + response.status);
+  if (isGeminiKey) {
+    // Route to Google Gemini API natively
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { temperature: 0.1, responseMimeType: "application/json" }
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Gemini API error:', errorText);
+      return getDefaultAnalysis('AI analysis failed: ' + response.status);
+    }
+
+    const result = await response.json() as any;
+    content = result.candidates?.[0]?.content?.parts?.[0]?.text || '';
+  } else {
+    // Route to OpenRouter (Claude/etc)
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+        'HTTP-Referer': 'https://hooklens.dev',
+        'X-Title': 'HookLens',
+      },
+      body: JSON.stringify({
+        model: 'anthropic/claude-3.5-sonnet',
+        max_tokens: 1500,
+        messages: [{ role: 'user', content: prompt }],
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('OpenRouter API error:', errorText);
+      return getDefaultAnalysis('AI analysis failed: ' + response.status);
+    }
+
+    const result = await response.json() as {
+      choices: Array<{ message: { content: string } }>;
+    };
+    content = result.choices[0]?.message?.content || '';
   }
 
-  const result = await response.json() as {
-    choices: Array<{ message: { content: string } }>;
-  };
-
   try {
-    const content = result.choices[0]?.message?.content || '';
-    const analysis: AIAnalysis = JSON.parse(content);
+    // Clean potential markdown wrappers if AI ignores json mime type
+    const cleanContent = content.replace(/^```json\s*/i, '').replace(/```\s*$/, '').trim();
+    const analysis: AIAnalysis = JSON.parse(cleanContent);
 
     // Cache for 1 hour
     if (redis) {
