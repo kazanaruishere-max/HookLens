@@ -65,6 +65,18 @@ Designed with a **20-year professional engineering standard**, HookLens eliminat
 5. **Team Collaboration:** Share isolated endpoint URLs with your team and utilize threaded comments directly on specific payloads.
 6. **Uptime Monitoring:** Generates synthetic checks and alerts Slack/Discord when your webhook consumption success rate drops.
 
+### 📸 Interface & Snapshots
+
+Here is HookLens in action, catching a live Stripe Webhook and analyzing it using AI:
+
+|                             Request Payload                             |                           Headers Inspection                            |
+| :---------------------------------------------------------------------: | :---------------------------------------------------------------------: |
+| <img src="./assets/screenshot-payload.png" alt="Payload" width="100%"/> | <img src="./assets/screenshot-headers.png" alt="Headers" width="100%"/> |
+
+|                           Metadata Overview                           |                                AI Signature Diagnosis                                |
+| :-------------------------------------------------------------------: | :----------------------------------------------------------------------------------: |
+| <img src="./assets/screenshot-metadata.png" alt="Meta" width="100%"/> | <img src="./assets/screenshot-signature-warning.png" alt="AI Warning" width="100%"/> |
+
 ### 🏗 Architecture Flowchart
 
 ```mermaid
@@ -142,6 +154,18 @@ Dirancang dengan **standar rekayasa perangkat lunak profesional tingkat senior (
 5. **Kolaborasi Tim:** Bagikan URL Endpoint (_workspace_) ke rekan satu tim, dan gunakan fitur komentar di dalam setiap data webhook untuk berdiskusi layaknya forum.
 6. **Pemantauan Uptime:** Menghitung rasio kesuksesan webhook Anda dan akan mengirimkan peringatan (Alert) ke Slack/Discord jika persentase fungsinya menurun.
 
+### 📸 Cuplikan Layar Praktis
+
+Berikut ini adalah tampilan HookLens saat menangkap Webhook asli dari Stripe dan menganalisisnya secara cerdas menggunakan AI:
+
+|                          Tampilan Payload Data                          |                         Inspeksi Daftar Header                          |
+| :---------------------------------------------------------------------: | :---------------------------------------------------------------------: |
+| <img src="./assets/screenshot-payload.png" alt="Payload" width="100%"/> | <img src="./assets/screenshot-headers.png" alt="Headers" width="100%"/> |
+
+|                          Ringkasan Metadata                           |                          Analisis Keamanan & Peringatan AI                           |
+| :-------------------------------------------------------------------: | :----------------------------------------------------------------------------------: |
+| <img src="./assets/screenshot-metadata.png" alt="Meta" width="100%"/> | <img src="./assets/screenshot-signature-warning.png" alt="AI Warning" width="100%"/> |
+
 ### 🏗 Alur Arsitektur (Flowchart)
 
 ```mermaid
@@ -192,6 +216,10 @@ HookLens dibangun menggunakan tumpukan (_stack_) teknologi yang sangat modern, t
 - **Penggerak AI Analisis:** OpenRouter (Model Claude 3.5 Sonnet Terbaik)
 
 ---
+
+## 📄 License & Legal
+
+This project is open-sourced software licensed under the **[MIT license](LICENSE)**.
 
 <div align="center">
   <p>🚀 <b>Start debugging your webhooks elegantly today.</b></p>
