@@ -126,6 +126,14 @@ HookLens is built using a modern, deeply optimized, and horizontally scalable st
 - **Payments:** Stripe Checkout & Webhooks
 - **AI Analytics:** OpenRouter (Claude 3.5 Model)
 
+### ⚠️ Demo Status & Disclaimer
+
+This project is currently in **Demo/Beta** state. While fully functional for development and debugging purposes, please note:
+
+- **Data Privacy:** Avoid sending sensitive or production-grade payloads to the public demo instance. Use it for testing and integration development only.
+- **No SLA:** As a demo, there is no guarantee of 100% uptime or data persistence. Historical logs may be cleared periodically.
+- **Use at Your Own Risk:** The developer is not responsible for any data loss or security issues arising from the use of this demo version.
+
 ---
 
 ## 🇮🇩 Dokumentasi Bahasa Indonesia
@@ -214,6 +222,14 @@ HookLens dibangun menggunakan tumpukan (_stack_) teknologi yang sangat modern, t
 - **Autentikasi Lapis Ganda:** Perlindungan Token JWT
 - **Sistem Pembayaran Profesional:** Infrastruktur Stripe Stripe
 - **Penggerak AI Analisis:** OpenRouter (Model Claude 3.5 Sonnet Terbaik)
+
+### ⚠️ Status Demo & Sanggahan
+
+Proyek ini saat ini dalam status **Demo/Beta**. Meskipun berfungsi penuh untuk tujuan pengembangan dan debugging, harap perhatikan:
+
+- **Privasi Data:** Hindari mengirimkan payload sensitif atau data produksi ke instansi demo publik. Gunakan hanya untuk pengujian dan pengembangan integrasi.
+- **Tanpa SLA:** Sebagai demo, tidak ada jaminan uptime 100% atau persistensi data. Log riwayat dapat dihapus secara berkala.
+- **Risiko Pengguna:** Developer tidak bertanggung jawab atas kehilangan data atau masalah keamanan yang timbul dari penggunaan versi demo ini.
 
 ---
 
