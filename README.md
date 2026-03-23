@@ -239,5 +239,5 @@ This project is open-sourced software licensed under the **[MIT license](LICENSE
 
 <div align="center">
   <p>🚀 <b>Start debugging your webhooks elegantly today.</b></p>
-  <p>&copy; 2026 Kazanaruishere. <i>All Intelligent Patterns Reserved.</i></p>
+  <p>&copy; 2026 Kazanaru. <i>All Intelligent Patterns Reserved.</i></p>
 </div>
